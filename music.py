@@ -1,4 +1,6 @@
-NOTES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+NOTES = [
+    'C ', 'C#', 'D ', 'D#', 'E ', 'F ', 'F#', 'G ', 'G#', 'A ', 'A#', 'B '
+]
 NUM_NOTES = len(NOTES)
 
 
@@ -31,10 +33,10 @@ class MusicKey:
         """Creates all chords in the scale"""
         for note in self.scale:
             chord_root_idx = self.scale.index(note)
-            first_tone = note
-            third_tone = self.scale[(chord_root_idx + 2) % 7]
-            fifth_tone = self.scale[(chord_root_idx + 4) % 7]
-            self.chords.append([first_tone, third_tone, fifth_tone])
+            first_note = note
+            third_note = self.scale[(chord_root_idx + 2) % 7]
+            fifth_note = self.scale[(chord_root_idx + 4) % 7]
+            self.chords.append([first_note, third_note, fifth_note])
 
     def label_chords(self):
         """Categorizes all chords in the scale"""
@@ -65,7 +67,6 @@ class MajorKey(MusicKey):
         self.scale.append(NOTES[self.whole_step()])
         self.scale.append(NOTES[self.whole_step()])
         self.scale.append(NOTES[self.whole_step()])
-        self.scale.append(NOTES[self.half_step()])
 
 
 class MinorKey(MusicKey):
@@ -77,7 +78,6 @@ class MinorKey(MusicKey):
         self.scale.append(NOTES[self.whole_step()])
         self.scale.append(NOTES[self.whole_step()])
         self.scale.append(NOTES[self.half_step()])
-        self.scale.append(NOTES[self.whole_step()])
         self.scale.append(NOTES[self.whole_step()])
 
 
@@ -95,23 +95,24 @@ class BluesScale(MusicKey):
         self.scale.append(NOTES[self.whole_step()])
 
 
-Cmaj = MajorKey('C')
-Cmaj.generate_scale()
-Cmaj.generate_chords()
-Cmaj.label_chords()
-for label, ch in zip(Cmaj.chord_labels, Cmaj.chords):
-    print(f"{label}: {ch}")
+if __name__ == "__main__":
+    Cmaj = MajorKey('C')
+    Cmaj.generate_scale()
+    Cmaj.generate_chords()
+    Cmaj.label_chords()
+    for label, ch in zip(Cmaj.chord_labels, Cmaj.chords):
+        print(f"{label}: {ch}")
 
-Gmaj = MajorKey('G')
-Gmaj.generate_scale()
-Gmaj.generate_chords()
-Gmaj.label_chords()
-for label, ch in zip(Gmaj.chord_labels, Gmaj.chords):
-    print(f"{label}: {ch}")
+    Gmaj = MajorKey('G')
+    Gmaj.generate_scale()
+    Gmaj.generate_chords()
+    Gmaj.label_chords()
+    for label, ch in zip(Gmaj.chord_labels, Gmaj.chords):
+        print(f"{label}: {ch}")
 
-Emin = MinorKey('E')
-Emin.generate_scale()
-Emin.generate_chords()
-Emin.label_chords()
-for label, ch in zip(Emin.chord_labels, Emin.chords):
-    print(f"{label}: {ch}")
+    Emin = MinorKey('E')
+    Emin.generate_scale()
+    Emin.generate_chords()
+    Emin.label_chords()
+    for label, ch in zip(Emin.chord_labels, Emin.chords):
+        print(f"{label}: {ch}")
